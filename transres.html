@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<style>
+    #myContainer {
+        width: 400px;
+        height: 400px;
+        position: relative;
+        background: yellow;
+    }
+    #myAnimation {
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        background-color: red;
+    }
+</style>
+<body>
+
+<p>
+    <button onclick="myMove()">Click Me</button>
+</p>
+
+<div id ="myContainer">
+    <div id ="myAnimation"></div>
+</div>
+
+<script>
+    function myMove() {
+        var elem = document.getElementById("myAnimation");
+        var h = elem.getBoundingClientRect().height;
+        var pos = 0;
+        var id = setInterval(frame, 100);
+        function frame() {
+            if (pos == 401) {
+                clearInterval(id);
+            } else {
+                pos++;
+                //elem.style.top = pos + 'px';
+                document.getElementById("myAnimation").style.left = pos + 'px';
+                document.getElementById("myAnimation").style.height= (1-(elem.getBoundingClientRect().left/400))*h+'px';
+                document.getElementById("myAnimation").style.width= (1-(elem.getBoundingClientRect().left/400))*h+'px';
+                //var num = parseInt(elem.style.height, 10)
+                //var num = elem.getBoundingClientRect().height -10;
+                //document.getElementById("myAnimation").setAttribute('style','height:'+num+'px');
+                //elem.style.width = elem.getBoundingClientRect().width - 10 + 'px';
+            }
+        }
+    }
+</script>
+
+</body>
+</html>
